@@ -88,7 +88,7 @@ async function fillTable() {
   $("#table-head").append($tr);
 
   // Creating questions board (literally, with just question marks):
-  for (let clueIndex = 0; clueIndex < 6; clueIndex++) {
+  for (let clueIndex = 0; clueIndex < 5; clueIndex++) {
     let $tr = $("<tr>");
     for (let categoryIndex = 0; categoryIndex < 6; categoryIndex++) {
       $tr.append($("<td>").attr("id", `${categoryIndex}-${clueIndex}`).text("?"));
@@ -106,7 +106,27 @@ async function fillTable() {
  * */
 
 function handleClick(evt) {
-  console.log(evt);
+  // typeof === "string"
+  const fullId = evt.target.id;
+  // Array deconstruction to get unique categoryId and clueId:
+  const [categoryId, clueId] = fullId.split("-");
+  const clue = categories[categoryId].clues[clueId];
+  console.log(clue);
+  let stateManagement;
+
+  if (clue.showing === null) {
+    stateManagement = clue.questions;
+    clue.showing = "question";
+  } else if (clue.showing === "question") {
+    stateManagement = clue.answer;
+    clue.showing = "answer";
+  } else {
+    return;
+  }
+  
+  // Updating table cell:
+  $(`#${categoryId}-${clueId}`).html(stateManagement);
+
 }
 
 /** Wipe the current Jeopardy board, show the loading spinner,
