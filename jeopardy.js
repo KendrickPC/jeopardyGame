@@ -56,7 +56,9 @@ async function getCategory(catId) {
   // const clues = category.map(item => {
   //   return {item.questions, item.}
   // })
-  console.log(category);
+  
+  // console.log(category.title);
+
   const cluesArray = category.clues.map(item => {
     return {
       questions: item.question,
@@ -64,6 +66,7 @@ async function getCategory(catId) {
       showing: null,
     }
   })
+  // console.log(cluesArray);
   return {title: category.title, clues: cluesArray}
 
 }
@@ -77,6 +80,13 @@ async function getCategory(catId) {
  */
 
 async function fillTable() {
+  // Creating new table row:
+  let $tr = $("<tr>");
+  for (let idx = 0; idx < 6; idx++) {
+    // global categories array is not filled...yet...
+    $tr.append($("<th>").text(categories[idx].title));
+  }
+  $("#table-head").append($tr);
 }
 
 /** Handle clicking on a clue: show the question or answer.
@@ -111,7 +121,18 @@ function hideLoadingView() {
  * */
 
 async function setupAndStart() {
+  const categoryIds = await getCategoryIds();
+  categories = [];
+  for (let categoryId of categoryIds) {
+    categories.push(await getCategory(categoryId));
+  }
+  // console.log("setupAndStart: " + JSON.stringify(categories));
+  fillTable();
 }
+
+$(async function() {
+  setupAndStart();
+})
 
 /** On click of start / restart button, set up game. */
 
