@@ -56,7 +56,7 @@ async function getCategory(catId) {
   // const clues = category.map(item => {
   //   return {item.questions, item.}
   // })
-  
+
   // console.log(category.title);
 
   const cluesArray = category.clues.map(item => {
@@ -84,7 +84,7 @@ async function fillTable() {
   let $tr = $("<tr>");
   for (let idx = 0; idx < 6; idx++) {
     // global categories array is not filled...yet...
-    $tr.append($("<th>").text(categories[idx].title));
+    $tr.append($('<th scope="col">').text(categories[idx].title));
   }
   $("#table-head").append($tr);
 }
