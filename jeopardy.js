@@ -121,7 +121,7 @@ function handleClick(evt) {
     stateManagement = clue.questions;
     clue.showing = "questions";
   } else if (clue.showing === "questions") {
-    stateManagement = clue.answer;
+    stateManagement = "What is " + clue.answer + "?";
     clue.showing = "answer";
   } else {
     return;
