@@ -27,7 +27,7 @@ let categories = [];
  */
 
 async function getCategoryIds() {
-  const response = await axios.get('https://jservice.io/api/categories?count=10')
+  const response = await axios.get('https://jservice.io/api/categories?count=100')
   const categoryIds = response.data.map(item => {
     return item.id;
   })
@@ -80,6 +80,7 @@ async function getCategory(catId) {
  */
 
 async function fillTable() {
+  $("#table-head").empty();
   // Creating new table row:
   let $tr = $("<tr>");
   for (let category of categories) {
@@ -88,6 +89,7 @@ async function fillTable() {
   $("#table-head").append($tr);
 
   // Creating questions board (literally, with just question marks):
+  $("#table-body").empty();
   for (let clueIndex = 0; clueIndex < 5; clueIndex++) {
     let $tr = $("<tr>");
     for (let categoryIndex = 0; categoryIndex < 6; categoryIndex++) {
@@ -95,6 +97,7 @@ async function fillTable() {
     }
     $("#table-body").append($tr);
   }
+  hideLoadingView();
 }
 
 /** Handle clicking on a clue: show the question or answer.
@@ -113,11 +116,11 @@ function handleClick(evt) {
   const clue = categories[categoryId].clues[clueId];
   console.log(clue);
   let stateManagement;
-
+  // console.log(stateManagement);
   if (clue.showing === null) {
     stateManagement = clue.questions;
-    clue.showing = "question";
-  } else if (clue.showing === "question") {
+    clue.showing = "questions";
+  } else if (clue.showing === "questions") {
     stateManagement = clue.answer;
     clue.showing = "answer";
   } else {
@@ -134,12 +137,15 @@ function handleClick(evt) {
  */
 
 function showLoadingView() {
-
+  $('.loading').text("Loading...")
+  console.log("loading")
 }
 
 /** Remove the loading spinner and update the button used to fetch data. */
 
 function hideLoadingView() {
+  $('.loading').remove();
+  console.log("REMOVING")
 }
 
 /** Start game:
@@ -150,7 +156,9 @@ function hideLoadingView() {
  * */
 
 async function setupAndStart() {
+  showLoadingView();
   const categoryIds = await getCategoryIds();
+  // For restart button click:
   categories = [];
   for (let categoryId of categoryIds) {
     categories.push(await getCategory(categoryId));
@@ -159,9 +167,18 @@ async function setupAndStart() {
   fillTable();
 }
 
+
+
 $(async function() {
+  showLoadingView();
   setupAndStart();
   $("#table-body").on("click", "td", handleClick);
+})
+
+$(document).ready(function() {
+  $(".restart").click(function() {
+    location.reload(true);
+  })
 })
 
 /** On click of start / restart button, set up game. */

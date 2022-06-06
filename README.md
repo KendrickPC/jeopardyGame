@@ -37,3 +37,11 @@ console.log(selectedColors);
 </div>
 ```
 
+5. jQuery Reload Page:
+```js
+    $(document).ready(function(){
+        $("button").click(function(){
+            location.reload(true);
+        });
+    });
+```
