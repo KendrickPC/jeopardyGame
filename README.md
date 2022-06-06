@@ -20,8 +20,6 @@
 [generate random value from my array, without repeating itself [duplicate]](https://stackoverflow.com/questions/27431187/cannot-find-module-lodash)
 ```js
 $ npm install lodash --save
-
-
 // https://lodash.com/docs#shuffle
 const colors = ['blue','red','orange','purple','gray','yellow'];
 const selectedColors = _.shuffle(colors).splice(0, 3);  // 3 random colors

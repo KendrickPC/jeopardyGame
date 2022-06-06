@@ -82,11 +82,19 @@ async function getCategory(catId) {
 async function fillTable() {
   // Creating new table row:
   let $tr = $("<tr>");
-  for (let idx = 0; idx < 6; idx++) {
-    // global categories array is not filled...yet...
-    $tr.append($('<th scope="col">').text(categories[idx].title));
+  for (let category of categories) {
+    $tr.append($('<th scope="col">').text(category.title));
   }
   $("#table-head").append($tr);
+
+  // Creating questions board (literally, with just question marks):
+  for (let clueIndex = 0; clueIndex < 6; clueIndex++) {
+    let $tr = $("<tr>");
+    for (let categoryIndex = 0; categoryIndex < 6; categoryIndex++) {
+      $tr.append($("<td>").attr("id", `${categoryIndex}-${clueIndex}`).text("?"));
+    }
+    $("#table-body").append($tr);
+  }
 }
 
 /** Handle clicking on a clue: show the question or answer.
