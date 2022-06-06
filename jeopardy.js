@@ -106,6 +106,7 @@ async function fillTable() {
  * */
 
 function handleClick(evt) {
+  console.log(evt);
 }
 
 /** Wipe the current Jeopardy board, show the loading spinner,
@@ -140,6 +141,7 @@ async function setupAndStart() {
 
 $(async function() {
   setupAndStart();
+  $("#table-body").on("click", "td", handleClick);
 })
 
 /** On click of start / restart button, set up game. */
