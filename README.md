@@ -7,38 +7,34 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
-
-
 ```
 
+2. 
+[jService Documentation](https://jservice.io/)
+[jService API Help](https://www.reddit.com/r/javascript/comments/2q6kbz/jservice_108000_trivia_questions/)
+```js
+// http://jservice.io/api/categories?count=100
+```
+
+3. Generate Non repeating random nums
+[generate random value from my array, without repeating itself [duplicate]](https://stackoverflow.com/questions/27431187/cannot-find-module-lodash)
+```js
+$ npm install lodash --save
+
+
+// https://lodash.com/docs#shuffle
+const colors = ['blue','red','orange','purple','gray','yellow'];
+const selectedColors = _.shuffle(colors).splice(0, 3);  // 3 random colors
+console.log(selectedColors);
+```
+
+4. HTML Framework
 ```html
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
+<h1 class="h1 text-center m-3">Kenneth's Jeopardy</h1>
+<div class="container">
+<table id="jeopardy">
+    <thead></thead>
+    <tbody></tbody>
 </table>
+</div>
 ```
