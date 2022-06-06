@@ -1,5 +1,8 @@
 # Jeopardy Assessment
 
+[Project Hosted on Git Pages](https://kendrickpc.github.io/jeopardyGame/)
+[Git Repo](https://github.com/KendrickPC/jeopardyGame)
+
 1. [Bootstrap Bordered Tables](https://getbootstrap.com/docs/4.0/content/tables/)
 
 ```html
@@ -45,3 +48,4 @@ console.log(selectedColors);
         });
     });
 ```
+
